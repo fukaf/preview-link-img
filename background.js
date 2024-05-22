@@ -1,4 +1,10 @@
-let defaultRegex = your_default_regex_here;
+// You can set a default regex here or in the options page
+let regexString = '/pattern/gi';
+
+chrome.storage.sync.get(['regex'], function(result) {
+    // console.log('Regex retrived: ', result.regex);
+    regexString = result.regex;
+});
 
 // Receive links from message sent by popup.js
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -14,13 +20,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.type === 'startPreview') {
         console.log('background.js loaded'); 
         const links = request.links;
-        let regexString = request.regex.replace(/\\\\/g, '\\');
-        
-        if (!regexString) {
-            regexString = defaultRegex;
-        }
 
-        const regex = new RegExp(regexString, 'gi'); // Create a RegExp object from the string
+        let pattern = regexString.slice(1, regexString.lastIndexOf('/'));
+        let flags = regexString.slice(regexString.lastIndexOf('/') + 1);
+        const regex = new RegExp(pattern, flags); // Create a RegExp object from the string
 
         console.log('regex: ', regex);
         // console.log('next_page_links: ', links);

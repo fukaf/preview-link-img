@@ -106,7 +106,7 @@ chrome.runtime.sendMessage({type: "getTabUrl"}, function(response) {
                 const viewLinks = getLinks();
     
                 // Send a message to the background script
-                chrome.runtime.sendMessage({ type: 'startPreview', links: viewLinks, regex: '' });
+                chrome.runtime.sendMessage({ type: 'startPreview', links: viewLinks});
                 console.log("trigger button clicked from content.js");
             });
             

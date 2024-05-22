@@ -1,4 +1,4 @@
-let defaultRegex = /<img[^>]*src="([^"]*u9img[^"]*)"/gi;
+let defaultRegex = your_default_regex_here;
 
 // Receive links from message sent by popup.js
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {

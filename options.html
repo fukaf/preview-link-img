@@ -2,14 +2,53 @@
 <html>
 <head>
     <title>Options</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        fieldset {
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="number"] {
+            width: 30%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            padding: 5px 10px;
+        }
+        .description {
+            font-size: 0.1em;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
     <h1>Options</h1>
     <form id="optionsForm">
-        <label for="website">Website:</label><br>
-        <input type="text" id="website" name="website"><br>
-        <label for="regex">Default Regex:</label><br>
-        <input type="text" id="regex" name="regex"><br>
+        <fieldset>
+            <legend>Website Settings</legend>
+            <label for="website">Website:</label>
+            <p class="description">Enter the website that the extension operates on.</p>
+            <input type="text" id="website" name="website">
+        </fieldset>
+
+        <fieldset>
+            <legend>Image Settings</legend>
+            <label for="regex">Default Regex:</label>
+            <p class="description">Enter a regular expression to match specific images.</p>
+            <input type="text" id="regex" name="regex">
+            <label for="threshold">Two-Row Display Threshold:</label>
+            <p class="description">Enter a threshold for the number of images to display. If the number of images exceeds this threshold, the images will be displayed 2 in a row.</p>
+            <input type="number" id="threshold" name="threshold" min="1" value="6">
+        </fieldset>
+
         <input type="submit" value="Save">
         <p id="saveMessage" style="display: none;">Options saved.</p>
     </form>

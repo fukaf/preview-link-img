@@ -2,12 +2,6 @@ let startPreviewButton = document.getElementById('previewButton');
 
 
 window.onload = function() {
-    document.getElementById('save').addEventListener('click', function() {
-        let threshold = document.getElementById('threshold').value;
-        chrome.storage.sync.set({threshold: threshold}, function() {
-            console.log('Threshold value is set to ' + threshold);
-        });
-    });
 
     document.getElementById('optionsButton').addEventListener('click', function() {
         chrome.runtime.openOptionsPage();

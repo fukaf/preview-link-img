@@ -1,5 +1,13 @@
 let startPreviewButton = document.getElementById('previewButton');
+let toggleButton = document.getElementById('toggleButton');
 
+toggleButton.addEventListener('click', function() {
+    let isOn = toggleButton.classList.contains('on');
+    toggleButton.classList.toggle('on', !isOn);
+    toggleButton.classList.toggle('off', isOn);
+    toggleButton.textContent = isOn ? 'Check Links: OFF' : 'Check Links: ON';
+    chrome.storage.sync.set({checkLinks: !isOn});
+});
 
 window.onload = function() {
 
@@ -14,9 +22,14 @@ window.onload = function() {
             });
         }
     });
+
+    chrome.storage.sync.get('checkLinks', function(data) {
+        let isOn = data.checkLinks;
+        toggleButton.classList.toggle('on', isOn);
+        toggleButton.classList.toggle('off', !isOn);
+        toggleButton.textContent = isOn ? 'Check Links: ON' : 'Check Links: OFF';
+    });
 }
-
-
 
 startPreviewButton.addEventListener("click", async () => {
     // Get current tab

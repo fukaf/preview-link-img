@@ -4,11 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Preview link imgs</title>
+    <style>
+        body {
+            width: 300px;  /* Adjust as needed */
+            height: 60px;  /* Adjust as needed */
+        }
+
+        #toggleButton.on {
+            background-color: rgb(63, 246, 63);
+            color: black;
+        }
+
+        #toggleButton.off {
+            background-color: rgb(250, 38, 38);
+            color: white;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .button-container button {
+            flex: 1 0 auto;
+            margin: 5px;
+            padding: 5px;
+        }
+
+    </style>
 </head>
 <body>
-    <button id="previewButton">Preview Images</button>
+    <div class="button-container">
+        <button id="previewButton">Preview Images</button>
+        <button id="optionsButton">Options</button>
+        <button id="clearDatabase">Clear linkdatabase</button>
+        <button id="toggleButton" class="off">Toggle Check Links</button>
+    </div>
     <script src="popup.js"></script>
-    <button id="optionsButton">Options</button>
-    <button id="clearDatabase">Clear linkdatabase</button>
 </body>
 </html>

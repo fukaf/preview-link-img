@@ -69,7 +69,7 @@ chrome.runtime.sendMessage({type: "getTabUrl"}, function(response) {
     domainPrefix = response.tabUrl;
     console.log('domainPrefix: ', domainPrefix);
 
-    chrome.storage.sync.get(['website', 'threshold'], function(result) {
+    chrome.storage.sync.get(['website', 'threshold', 'checkLinks'], function(result) {
         const website = result.website;
         console.log('Website: ', website);
     
@@ -142,7 +142,7 @@ chrome.runtime.sendMessage({type: "getTabUrl"}, function(response) {
                         
                         let linkElement = document.querySelector(`a[href="${request.link.replace(domainPrefix, '')}"]`);
 
-                        if (dbRequest.result) {
+                        if (dbRequest.result && result.checkLinks) {
                             console.log('Link has already been displayed');
                             // Create a paragraph element to display the message
                             const messageElement = document.createElement('p');
